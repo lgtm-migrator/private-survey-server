@@ -4,5 +4,10 @@
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
         "source.fixAll": true
-    }
+    },
+    "cSpell.words": [
+        "nvarchar",
+        "tinyint",
+        "typeorm"
+    ]
 }
