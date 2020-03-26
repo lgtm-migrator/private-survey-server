@@ -3,7 +3,7 @@ import { Column, Entity, OneToMany, } from "typeorm";
 import { QuestionBase } from "../question/QuestionBase";
 
 @Entity()
-export class SurveyTemplate extends Base {
+export class SurveyVersion extends Base {
 
     constructor(title = "", version = 0, description = "") {
         super();

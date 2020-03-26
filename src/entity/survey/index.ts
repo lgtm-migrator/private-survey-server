@@ -1,5 +1,5 @@
-import { SurveyTemplate } from "./SurveyTemplate";
+import { SurveyVersion } from "./SurveyVersion";
 
 export const Surveys = [
-    SurveyTemplate
+    SurveyVersion
 ];

@@ -1,6 +1,6 @@
 import { createConnection, Connection, } from "typeorm";
 import { entities } from ".";
-import { SurveyTemplate } from "./survey/SurveyTemplate";
+import { SurveyVersion } from "./survey/SurveyVersion";
 import { TextQuestion } from "./question/TextQuestion";
 import { StarQuestion } from "./question/StarQuestion";
 import { NumberQuestion } from "./question/NumberQuestion";
@@ -26,7 +26,7 @@ describe('Entities Test Suite', () => {
 
     it('should create a simple survey', async () => {
 
-        const survey = new SurveyTemplate("survey 1");
+        const survey = new SurveyVersion("survey 1");
 
 
         const q1 = new TextQuestion("Your Name?", 0);

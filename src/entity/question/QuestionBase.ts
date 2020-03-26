@@ -1,6 +1,6 @@
 import { Column, TableInheritance, Entity, ManyToOne } from "typeorm";
 import { Base } from "../Base";
-import { SurveyTemplate } from "../survey/SurveyTemplate";
+import { SurveyVersion } from "../survey/SurveyVersion";
 
 /**
  * sub classes are used to store the question configuration
@@ -27,8 +27,8 @@ export class QuestionBase extends Base {
     @Column({ type: "tinyint", comment: "is this question could be skipped", default: false })
     optional: boolean;
 
-    @ManyToOne(type => SurveyTemplate, s => s.questions)
-    survey: SurveyTemplate[];
+    @ManyToOne(type => SurveyVersion, s => s.questions)
+    survey: SurveyVersion[];
 
 
 }
