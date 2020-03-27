@@ -22,7 +22,7 @@ export class SurveyVersion extends Base {
     versionNumber: number;
 
     @OneToMany(type => QuestionBase, q => q.survey)
-    questions: QuestionBase[];
+    questions: Promise<QuestionBase[]>;
 
 
 }

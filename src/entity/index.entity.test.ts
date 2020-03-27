@@ -1,4 +1,4 @@
-import { createConnection, Connection, } from "typeorm";
+import { createConnection, Connection } from "typeorm";
 import { entities } from ".";
 import { SurveyVersion } from "./survey/SurveyVersion";
 import { TextQuestion } from "./question/TextQuestion";
@@ -52,19 +52,34 @@ describe('Entities Test Suite', () => {
 
         await q4.save();
 
-        survey.questions = [q1, q2, q3, q4];
+        survey.questions = Promise.resolve([q1, q2, q3, q4]);
 
         await survey.save(); // create uuid
 
         expect(survey.uuid).not.toBeUndefined();
 
-        survey.questions.forEach(q => {
+        (await survey.questions).forEach(q => {
             expect(q.uuid).not.toBeUndefined();
         });
 
     });
 
-    it('should query select query options', async () => {
+    it('should query survey 1', async () => {
+
+        const s = await SurveyVersion.findOne({
+            where: { title: "survey 1" },
+            relations: ["questions"]
+        });
+
+        const questions = await s.questions;
+
+        expect(questions.length).toBe(4);
+        expect(questions[0] instanceof TextQuestion).toBeTruthy();
+        expect(questions[1] instanceof StarQuestion).toBeTruthy();
+
+    });
+
+    it('should query select options', async () => {
         const q3 = await SelectQuestion.findOne({
             where: { question: "Where are you come from?" },
             relations: ["options"],
@@ -77,7 +92,7 @@ describe('Entities Test Suite', () => {
     });
 
     afterAll(async () => {
-        conn.close();
+        await conn.close();
     });
 
 });
